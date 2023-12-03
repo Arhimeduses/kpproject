@@ -1,9 +1,10 @@
+//вроде как главная страница, которая открывается при запуске проекта, содержит файлик ../components/PersonalData.vue
 <script setup lang="ts">
-import TheWelcome from '../components/PersonalData.vue'
+import PersonalData from '../components/PersonalData.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <PersonalData />
   </main>
 </template>

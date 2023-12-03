@@ -9,14 +9,35 @@ const router = createRouter({
       name: 'Main',
       component: Main
     },
+
+    //какие-то штуки для импорта файликов из папки components
+    {
+      path: '/PersonalData',
+      name: 'PersonalData',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../components/PersonalData.vue')
+    },
+
     {
       path: '/OrdersHistory',
       name: 'OrdersHistory',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/OrdersHistory.vue')
+      component: () => import('../components/OrdersHistory.vue')
+    },
+
+    {
+      path: '/PasswordChange',
+      name: 'PasswordChange',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../components/PasswordChange.vue')
     }
+    
   ]
 })
 

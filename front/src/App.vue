@@ -8,12 +8,11 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="rightbuttons">
       <button class="rightbuttons-elements" type="submit"><RouterLink to="/">Персональные данные</RouterLink></button>
       <button class="rightbuttons-elements" type="submit"><RouterLink to="/OrdersHistory">История заказов</RouterLink></button>
-      <button class="rightbuttons-elements" type="submit">Смена пароля</button>
+      <button class="rightbuttons-elements" type="submit"><RouterLink to="/PasswordChange">Смена пароля</RouterLink></button>
     </div>
     <div style="margin-right: 300px;">
       <RouterView />
     </div>
-  
   </body>
   
 </template>
