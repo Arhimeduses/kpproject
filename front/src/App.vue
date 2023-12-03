@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="rightbuttons">
       <RouterLink class="rightbuttons-elements" to="/">Персональные данные</RouterLink>
       <RouterLink class="rightbuttons-elements" to="/OrdersHistory">История заказов</RouterLink>
-      <RouterLink class="rightbuttons-elements" to="/ChangePassword">Смена пароля</RouterLink>
+      <RouterLink class="rightbuttons-elements" to="/PasswordChange">Смена пароля</RouterLink>
     </div>
     <div style="margin-right: 300px;">
       <RouterView />

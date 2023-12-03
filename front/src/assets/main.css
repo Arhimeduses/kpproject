@@ -81,11 +81,25 @@ button {
     cursor: pointer;
 }
 
-.rightbuttons{
+/*стиль текста ошибки*/
+.error {
+    color: rgb(231, 47, 47);
+}
+
+/*стили кнопок слева*/
+.rightbuttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между кнопками */
     margin: 30px;
     height: 70px;
     width: 100px;
     position: relative;
+    flex-direction: column;
+}
+
+.rightbuttons-elements:hover {
+    text-decoration: underline;
 }
 
 .rightbuttons-elements{
@@ -98,6 +112,10 @@ button {
     font-weight: 700 ;
     border-radius: 2px;
     display: inline-block;
+    text-decoration: none;
+    padding: 3px; /* Поля вокруг текста для создания кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+    cursor: pointer;
 }
 
 .block {
@@ -122,4 +140,3 @@ button {
     margin: 8px;
     color: #555;
 }
-
