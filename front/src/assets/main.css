@@ -94,8 +94,10 @@ button {
     margin: 30px;
     height: 70px;
     width: 100px;
+    color: #3D4F64;
     position: relative;
     flex-direction: column;
+    gap: 0.5cm;
 }
 
 .rightbuttons-elements:hover {
@@ -116,6 +118,7 @@ button {
     padding: 3px; /* Поля вокруг текста для создания кнопки */
     text-align: center; /* Выравнивание текста по центру */
     cursor: pointer;
+    
 }
 
 .block {
