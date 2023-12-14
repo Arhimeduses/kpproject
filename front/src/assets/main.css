@@ -97,7 +97,6 @@ button {
     color: #3D4F64;
     position: relative;
     flex-direction: column;
-    gap: 0.5cm;
 }
 
 .rightbuttons-elements:hover {
@@ -142,4 +141,34 @@ button {
 .value {
     margin: 8px;
     color: #555;
+}
+
+/* Стили страницы с формой входа в личный кабинет LoginPage.vue */
+
+.loginbutton {
+    width: 197px;
+    height: 44px;
+    padding: 5px;
+    background-color: #FFC94F;
+    color: #464855;
+    font-weight: 700 ;
+    font-size: 14px ;
+    border-radius: 2px;
+    justify-content: center;
+    margin: 30px auto;
+    cursor: pointer;
+    position: relative;
+    flex-direction: column;
+}
+
+.loginbutton-elements{
+    color: #464855;
+    font-weight: 700 ;
+    font-size: 14px ;
+    border-radius: 2px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0; /* Поля вокруг текста для создания кнопки */
+    text-align: center; /* Выравнивание текста по центру */
+    cursor: pointer;
 }

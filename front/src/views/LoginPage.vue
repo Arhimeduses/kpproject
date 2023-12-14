@@ -1,11 +1,10 @@
 //вроде как главная страница, которая открывается при запуске проекта, содержит файлик ../components/PersonalData.vue
 <script setup lang="ts">
-import PersonalData from '../components/PersonalData.vue'
-import { RouterLink, RouterView } from 'vue-router'
+import LoginPage from '../components/LoginPage.vue'
 </script>
 
 <template>
   <main>
-    <PersonalData />
+    <LoginPage />
   </main>
 </template>

@@ -239,8 +239,3 @@ const submitForm = () => {
 };
 </script>
 
-<style>
-.error {
-  color: red;
-}
-</style>
