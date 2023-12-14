@@ -51,6 +51,7 @@ form {
     text-align: center;
 }
 
+
 input[type="text"], input[type="email"], input[type="number"], input[type="file"], input[type="password"] {
     width: 100%;
     margin: 2px 0;
@@ -67,6 +68,7 @@ input[type="checkbox"] {
     margin-right: 5px;
 }
 
+
 button {
     margin: 10px;
     width: 214px;
@@ -79,6 +81,9 @@ button {
     border: none;
     border-radius: 2px;
     cursor: pointer;
+}
+button:hover {
+    background-color: #ffb64f;
 }
 
 /*стиль текста ошибки*/
@@ -100,7 +105,7 @@ button {
 }
 
 .rightbuttons-elements:hover {
-    text-decoration: underline;
+    background-color: #232E3B;
 }
 
 .rightbuttons-elements{

@@ -28,7 +28,7 @@
             </div>
             <div style="display: inline-block; margin: 10px; width: 70%;">
               <label for="city">Город</label>
-              <input v-model="formData.city" @input="validateCity" type="text" id="city" name="city" placeholder="Волгоград" style=""><br>
+              <input v-model="formData.city" @input="validateCity" type="text" id="city" name="city" placeholder="Волгоград"><br>
             </div>
             <p v-if="zipError" class="error">{{ zipError }}</p>
             <p v-if="cityError" class="error">{{ cityError }}</p>
@@ -40,7 +40,7 @@
             </div>
             <div style="display: inline-block; margin: 10px; width: 20%;">
               <label for="building">Дом</label>
-              <input v-model="formData.building" @input="validateBuilding" type="text" id="building" name="building" placeholder="2Б" style=""><br>
+              <input v-model="formData.building" @input="validateBuilding" type="text" id="building" name="building" placeholder="2Б"><br>
             </div>
             <p v-if="streetError" class="error">{{ streetError }}</p>
             <p v-if="buildingError" class="error">{{ buildingError }}</p>
@@ -60,6 +60,10 @@
     </section>
   </body>
 </template>
+
+
+
+
 
 <script setup lang="ts">
 import { ref } from 'vue';
