@@ -5,17 +5,17 @@
         <section>  
           <div>
             <label for="fio" style="float: left">ФИО</label>
-            <input v-model="formData.fio" @input="validateFio" type="text" id="fio" name="fio" placeholder="Иванов Иван Иванович"><br>
+            <input v-model="formData.fio" :disabled="!isEditing" @input="validateFio" type="text" id="fio" name="fio"><br>
             <p v-if="fioError" class="error">{{ fioError }}</p>
           </div>
           <div>
             <label for="email" style="float: left">Email</label>
-            <input v-model="formData.email" @input="validateEmail" type="email" id="mail" name="mail" placeholder="ivanivanov@gmail.com"><br>
+            <input v-model="formData.email" :disabled="!isEditing" @input="validateEmail" type="email" id="mail" name="mail"><br>
             <p v-if="emailError" class="error">{{ emailError }}</p>
           </div>
           <div>
             <label for="phone" style="float: left">Телефон</label>
-            <input v-model="formData.phone" @input="validatePhone" type="text" id="phone" name="phone" placeholder="+7 (777) 777 77-77">
+            <input v-model="formData.phone" :disabled="!isEditing" @input="validatePhone" type="text" id="phone" name="phone">
             <p v-if="phoneError" class="error">{{ phoneError }}</p>
           </div>
         </section>
@@ -24,11 +24,11 @@
           <div>
             <div style="display: inline-block; margin: 10px; width: 20%;">
               <label for="zip" style="">Индекс</label>
-              <input v-model="formData.zip" @input="validateZip" type="text" id="zip" name="zip" placeholder="400003"><br>
+              <input v-model="formData.zip" :disabled="!isEditing" @input="validateZip" type="text" id="zip" name="zip"><br>
             </div>
             <div style="display: inline-block; margin: 10px; width: 70%;">
               <label for="city">Город</label>
-              <input v-model="formData.city" @input="validateCity" type="text" id="city" name="city" placeholder="Волгоград"><br>
+              <input v-model="formData.city" :disabled="!isEditing" @input="validateCity" type="text" id="city" name="city"><br>
             </div>
             <p v-if="zipError" class="error">{{ zipError }}</p>
             <p v-if="cityError" class="error">{{ cityError }}</p>
@@ -36,18 +36,18 @@
           <div>
             <div style="display: inline-block; margin: 10px; width: 70%;">
               <label for="street">Улица</label>
-              <input v-model="formData.street" @input="validateStreet" type="text" id="street" name="street" placeholder="Штеменко"><br>
+              <input v-model="formData.street" :disabled="!isEditing" @input="validateStreet" type="text" id="street" name="street"><br>
             </div>
             <div style="display: inline-block; margin: 10px; width: 20%;">
               <label for="building">Дом</label>
-              <input v-model="formData.building" @input="validateBuilding" type="text" id="building" name="building" placeholder="2Б"><br>
+              <input v-model="formData.building" :disabled="!isEditing" @input="validateBuilding" type="text" id="building" name="building"><br>
             </div>
             <p v-if="streetError" class="error">{{ streetError }}</p>
             <p v-if="buildingError" class="error">{{ buildingError }}</p>
           </div>
           <div style="display: inline-block; margin: 10px; width: 20%;">
             <label for="appartments">Квартира</label>
-            <input v-model="formData.appartment" @input="validateAppartment" type="text" id="appartments" name="appartments" placeholder="50"><br>
+            <input v-model="formData.appartment" :disabled="!isEditing" @input="validateAppartment" type="text" id="appartments" name="appartments"><br>
           </div>
           <div style="display: inline-block; margin: 10px; width: 70%;">
             <label for="subscribe" style="margin: 30px;">Частный дом</label>
@@ -55,7 +55,8 @@
           </div>
           <p v-if="appartmentError" class="error">{{ appartmentError }}</p>
         </section>
-        <button type="submit" :disabled="hasValidationError">Редактировать данные</button>
+        <button v-if="!isEditing" @click="toggleEditMode">Редактировать данные</button>
+        <button v-else @click="submitForm">Отправить изменения</button>
       </form>
     </section>
   </body>
@@ -85,14 +86,14 @@ interface FormData {
 
 // Состояние формы и ошибок валидации
 const formData = ref<FormData>({
-  fio: "",
-  email: "",
-  phone: "",
-  zip: "",
-  city: "",
-  street: "",
-  building: "",
-  appartment: "",
+  fio: "Иванов Иван Иванович",
+  email: "ivanivanov@gmail.com",
+  phone: "796176774757",
+  zip: "400003",
+  city: "Волгоград",
+  street: "Штеменко",
+  building: "2Б",
+  appartment: "50",
   isPrivateHouse: false
 });
 
@@ -229,16 +230,30 @@ const validateAppartment = () => {
 
   hasValidationError.value = appartmentError.value !== null; 
 };
-
-// Обработчик отправки формы
+// возможность редактировать
+const isEditing = ref(false);
+// изменение редактировать на отправить изменения
+const toggleEditMode = () => {
+  isEditing.value = !isEditing.value;
+};
+// отправка формы
 const submitForm = () => {
-  // Если есть ошибки валидации, прерываем отправку формы
   if (hasValidationError.value) {
     return;
   }
 
-  // Ваш код для сохранения данных в базе данных
-
+  formData.value = {
+    fio: formData.value.fio,
+    email: formData.value.email,
+    phone: formData.value.phone,
+    zip: formData.value.zip,
+    city: formData.value.city,
+    street: formData.value.street,
+    building: formData.value.building,
+    appartment: formData.value.appartment,
+    isPrivateHouse: formData.value.isPrivateHouse
+  };
+  
   console.log('Данные успешно обновлены:', formData.value);
 };
 </script>
