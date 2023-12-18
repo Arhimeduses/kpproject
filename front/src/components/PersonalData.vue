@@ -45,7 +45,7 @@
             <p v-if="streetError" class="error">{{ streetError }}</p>
             <p v-if="buildingError" class="error">{{ buildingError }}</p>
           </div>
-          <div style="display: inline-block; margin: 10px; width: 20%;">
+          <div v-if="!formData.isPrivateHouse" style="display: inline-block; margin: 10px; width: 20%;">
             <label for="appartments">Квартира</label>
             <input v-model="formData.appartment" :disabled="!isEditing" @input="validateAppartment" type="text" id="appartments" name="appartments"><br>
           </div>
@@ -94,7 +94,7 @@ const formData = ref<FormData>({
   street: "Штеменко",
   building: "2Б",
   appartment: "50",
-  isPrivateHouse: false
+  isPrivateHouse: true
 });
 
 const fioError = ref<string | null>(null);
