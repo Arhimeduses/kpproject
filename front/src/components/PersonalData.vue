@@ -51,7 +51,7 @@
           </div>
           <div style="display: inline-block; margin: 10px; width: 70%;">
             <label for="subscribe" style="margin: 30px;">Частный дом</label>
-            <input v-model="formData.isPrivateHouse" type="checkbox" id="subscribe" name="subscribe" value="yes">
+            <input v-model="formData.isPrivateHouse" :disabled="!isEditing" type="checkbox" id="subscribe" name="subscribe" value="yes">
           </div>
           <p v-if="appartmentError" class="error">{{ appartmentError }}</p>
         </section>
