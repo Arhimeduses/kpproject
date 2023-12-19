@@ -13,11 +13,6 @@ use App\Models\orders;
 
 class ProfileController extends Controller
 {
-    private $users = new users;
-    private $user_order = new user_order;
-    private $employee = new employee;
-    private $employee_order = new employee_order;
-    private $order = new orders;
 
     public function GetUserData (Request $request):JsonResponse{
 
@@ -46,11 +41,25 @@ class ProfileController extends Controller
                 'service_type'=>$order->service_type,
                 'status'=>$order->status,
                 'begin_date'=>$order->begin_date,
-                'end_date'=>$order->end_date
+                'end_date'=>$order->end_date,
             );
+
+            $employee_orders = employee_order::where('order_id', $orders['id'])->all();
+            foreach($employee_orders as $employee_order){
+                $employee=employee::where('id', $employee_order->employee_id)->first();
+                $orders[$user_order->order_id][]=array(
+                    'name'=>$employee->name,
+                    'surname'=>$employee->surname,
+                    'secondname'=>$employee->secondname,
+                    'role'=>$employee->role,
+                    'rating'=>$employee->rating,
+                );
+            }
         }
 
-        $employees = array();
+        return response()->Json([
+            'orders'=>$orders,
+        ]);
 
         
 
