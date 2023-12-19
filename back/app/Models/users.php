@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class employee extends Model
+class users extends Model
 {
     use HasFactory;
-
-    protected $table = "employee";
+    protected $table = "users";
 
     public $timestamps = false;
 
@@ -18,7 +17,8 @@ class employee extends Model
         'name',
         'surname',
         'secondname',
-        'role',
-        'rating',
+        'email',
+        'phone_number',
+        'password',
     ];
 }

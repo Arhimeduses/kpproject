@@ -2,62 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
-use Inertia\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Database\Eloquent\Collection;
+use App\Models\users;
+use App\Models\user_order;
+use App\Models\employee;
+use App\Models\employee_order;
+use App\Models\orders;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): Response
-    {
-        return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
+    private $users = new users;
+    private $user_order = new user_order;
+    private $employee = new employee;
+    private $employee_order = new employee_order;
+    private $order = new orders;
+
+    public function GetUserData (Request $request):JsonResponse{
+
+        
+        $users = users::where('id', $request->id)->first();
+
+        return response()->Json([
+            'name'=>$users->name,
+            'surname'=>$users->surname,
+            'secondname'=>$users->secondname,
+            'email'=>$users->email,
+            'phone_number'=>$users->phone_number,
+            'password'=>$users->password,
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+    public function GetUserOrders (Request $request):JsonResponse{
+        $orders = array();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user_orders = user_order::where('user_id', $request->id)->all();
+        foreach($user_orders as $user_order){
+            $order = orders::where('id', $user_order->order_id)->first();
+            $orders[$user_order->order_id]=array(
+                'id'=>$order->id,
+                'cost'=>$order->cost,
+                'service_type'=>$order->service_type,
+                'status'=>$order->status,
+                'begin_date'=>$order->begin_date,
+                'end_date'=>$order->end_date
+            );
         }
 
-        $request->user()->save();
+        $employees = array();
 
-        return Redirect::route('profile.edit');
-    }
+        
 
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
     }
 }
